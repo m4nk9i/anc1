@@ -42,7 +42,7 @@
             // 
             this.panel1.Location = new System.Drawing.Point(27, 13);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(574, 425);
+            this.panel1.Size = new System.Drawing.Size(574, 508);
             this.panel1.TabIndex = 0;
             // 
             // timer1
@@ -53,7 +53,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(702, 233);
+            this.textBox1.Location = new System.Drawing.Point(702, 333);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(293, 205);
@@ -74,7 +74,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(920, 204);
+            this.button1.Location = new System.Drawing.Point(920, 304);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -84,7 +84,7 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(702, 182);
+            this.trackBar1.Location = new System.Drawing.Point(702, 282);
             this.trackBar1.Maximum = 9;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(194, 45);
@@ -95,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 450);
+            this.ClientSize = new System.Drawing.Size(1007, 550);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBox1);

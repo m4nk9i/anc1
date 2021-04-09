@@ -84,12 +84,25 @@ namespace anc1
         {
             List<Czastka> tlcz;
             Vector2 tvec = new Vector2(odl * (float) Math.Cos(kierunek), odl * (float)Math.Sin(kierunek));
-            //      kierunek =kierunek+ pran.Next(20)/10.0f-1.0f;
-            kierunek =kierunek+ pran.Next(20)/20.0f-0.50f;
+                  kierunek =kierunek+ pran.Next(20)/10.0f-1.0f;
+            //kierunek =kierunek+ pran.Next(20)/20.0f-0.50f;
             poz = poz + tvec;
             tlcz = znajdz(pplcz);
+            float odleglosc = 100000.0f;
             foreach (Czastka tcz in tlcz)
             {
+
+
+
+                if ((tcz.typ==Czastka.typ_czastki.fe_donory)&&(szukazarcia==false))
+                {
+                    if (Vector2.DistanceSquared(tcz.poz,poz)<odleglosc)
+                    {
+                        kierunek = kat(tcz.poz - poz);
+                        odleglosc = Vector2.DistanceSquared(tcz.poz, poz);
+                    }
+                }
+
                 if ((tcz.typ==Czastka.typ_czastki.jedzenie)
                     && (szukazarcia==true) && (tcz.wolne==true))
                 {
@@ -107,6 +120,8 @@ namespace anc1
                 }
 
             }
+            if (kierunek > 2 * Math.PI) kierunek -= 2.0f * (float)Math.PI;
+            if (kierunek < 0) kierunek += 2.0f * (float)Math.PI;
 
         }
 
@@ -132,7 +147,7 @@ namespace anc1
 
         public void dodajslad(List<Czastka> plcz)
         {
-            Czastka tcz = new Czastka(poz,20);
+            Czastka tcz = new Czastka(poz,50);
             if (szukazarcia == true)
             {
                 tcz.typ = Czastka.typ_czastki.fe_pozarcie;
@@ -149,18 +164,31 @@ namespace anc1
             return (float)Math.Atan2(twek.Y, twek.X);
         }
 
+        public float r_katow(float alfa, float beta)
+        {
+            // float f = Math.Max(alfa, beta) - Math.Min(alfa, beta);
+            // if (f > Math.PI) f = f - (float)Math.PI;
+
+            float f = alfa - beta;
+            f = (f + (float)Math.PI) % (2.0f * (float)Math.PI)-(float)Math.PI;
+
+            return f;
+        }
+
         public List<Czastka> znajdz(List<Czastka> plcz)
         {
-            float katt;
+            float katt,r_kat;
             List<Czastka> tlcz =new List<Czastka>();
             
             foreach(Czastka tcz in plcz)
             {
                 
-                if (Vector2.Distance(tcz.poz,poz)<900)
+                if (Vector2.Distance(tcz.poz,poz)<90)
                 {
-                    katt = kat(poz - tcz.poz);
-                    if (( kierunek -katt< 0.5) && (kierunek- katt > -0.5))
+                    katt = kat(tcz.poz - poz);
+                    r_kat = r_katow(kierunek, katt);
+                    if ((r_kat <0.5) && (r_kat>-0.5))
+                    //if (( kierunek -katt< 0.5) && (kierunek- katt > -0.5))
                     {
                         tlcz.Add(tcz);
                     }
